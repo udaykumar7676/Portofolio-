@@ -15,6 +15,18 @@ const navItems = [
   { label: "Contact", href: "#contact" }
 ];
 
+const quickStats = [
+  { value: "6+", label: "Years shipping games" },
+  { value: "14", label: "Major systems delivered" },
+  { value: "3", label: "Engines used in production" }
+];
+
+const servicePillars = [
+  "Gameplay architecture and combat loops",
+  "AI behavior, pathing, and encounter design",
+  "Cross-platform optimization and tooling"
+];
+
 export default function PortfolioPage() {
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -77,6 +89,7 @@ export default function PortfolioPage() {
   return (
     <div ref={rootRef} className="min-h-screen bg-[#05070c] text-slate-100 selection:bg-magma/30 selection:text-white">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-mesh" />
+      <div className="pointer-events-none fixed inset-x-0 top-[-18rem] -z-10 h-[36rem] bg-[radial-gradient(circle_at_50%_35%,rgba(54,243,183,0.14),rgba(0,0,0,0))]" />
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070c]/70 backdrop-blur-md">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -88,27 +101,48 @@ export default function PortfolioPage() {
               </li>
             ))}
           </ul>
+          <a href="#contact" className="hidden rounded-full border border-neon/40 bg-neon/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-neon transition hover:border-neon hover:bg-neon/20 md:inline-flex">
+            Let&apos;s Talk
+          </a>
         </nav>
       </header>
 
       <main id="top" className="mx-auto flex max-w-6xl flex-col gap-24 px-6 pb-20 pt-16 md:gap-28 md:pt-24">
         <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-studio-900/70 via-[#0e1220]/80 to-[#1c0f12]/70 p-8 md:p-12" data-reveal>
-          <span data-hero-chip className="inline-flex rounded-full border border-neon/40 bg-neon/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-neon">
-            Game Developer Portfolio
-          </span>
-          <h1 data-hero-title className="mt-6 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-            Crafting high-impact gameplay systems that feel cinematic, responsive, and unforgettable.
-          </h1>
-          <p data-hero-copy className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
-            I build immersive player experiences from prototype to production, blending code architecture, game feel, and live-ops scalability for PC, console, and mobile titles.
-          </p>
-          <div data-hero-cta className="mt-8 flex flex-wrap gap-4">
-            <a href="#projects" className="rounded-full bg-magma px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5">
-              View Projects
-            </a>
-            <a href="#contact" className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-neon/50 hover:text-neon">
-              Hire Me
-            </a>
+          <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-neon/20 blur-3xl" />
+          <div className="absolute -bottom-20 -left-24 h-64 w-64 rounded-full bg-magma/20 blur-3xl" />
+          <div className="relative grid gap-10 lg:grid-cols-[1.2fr,0.8fr] lg:items-end">
+            <div>
+              <span data-hero-chip className="inline-flex rounded-full border border-neon/40 bg-neon/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-neon">
+                Senior Gameplay Developer
+              </span>
+              <h1 data-hero-title className="mt-6 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+                Crafting high-impact gameplay systems that feel cinematic, responsive, and unforgettable.
+              </h1>
+              <p data-hero-copy className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+                I build immersive player experiences from prototype to production, blending code architecture, game feel, and live-ops scalability for PC, console, and mobile titles.
+              </p>
+              <div data-hero-cta className="mt-8 flex flex-wrap gap-4">
+                <a href="#projects" className="rounded-full bg-magma px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5">
+                  View Projects
+                </a>
+                <a href="#contact" className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-neon/50 hover:text-neon">
+                  Hire Me
+                </a>
+              </div>
+            </div>
+            <aside className="rounded-2xl border border-white/15 bg-black/20 p-6 backdrop-blur-sm">
+              <p className="text-xs uppercase tracking-[0.16em] text-neon">Snapshot</p>
+              <div className="mt-4 grid grid-cols-3 gap-3">
+                {quickStats.map((item) => (
+                  <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <p className="text-2xl font-semibold text-white">{item.value}</p>
+                    <p className="mt-1 text-[11px] leading-snug text-slate-400">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 text-sm text-slate-300">Open to remote and hybrid roles across gameplay engineering, technical design, and systems ownership.</p>
+            </aside>
           </div>
         </section>
 
@@ -120,8 +154,16 @@ export default function PortfolioPage() {
               Over 6 years, I have shipped arcade, RPG, and horror mechanics with an emphasis on smooth controls, performant systems, and clear handoff for designers.
               My workflow combines technical rigor with rapid experimentation, so teams can stay creative while maintaining quality.
             </p>
+            <ul className="mt-6 space-y-3 text-sm text-slate-200">
+              {servicePillars.map((pillar) => (
+                <li key={pillar} className="flex items-start gap-3">
+                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-neon" />
+                  <span>{pillar}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-6">
             <p className="text-sm text-slate-400">Core Stack</p>
             <ul className="mt-4 space-y-3 text-sm text-slate-200">
               <li>Unreal Engine 5, Unity, Godot</li>
@@ -137,7 +179,7 @@ export default function PortfolioPage() {
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Projects that shipped and scaled.</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {projects.map((project) => (
-              <article key={project.title} className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-neon/40 hover:bg-white/[0.06]">
+              <article key={project.title} className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 transition hover:-translate-y-1 hover:border-neon/40">
                 <p className="text-xs uppercase tracking-[0.18em] text-studio-200">{project.genre}</p>
                 <h3 className="mt-3 text-xl font-semibold">{project.title}</h3>
                 <p className="mt-1 text-sm text-neon">{project.role}</p>
@@ -148,12 +190,14 @@ export default function PortfolioPage() {
                   ))}
                 </ul>
                 <p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-magma">{project.metrics}</p>
+                <p className="mt-3 text-xs uppercase tracking-[0.14em] text-slate-400 transition group-hover:text-neon">Case Study Available</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="skills" data-reveal>
+        <section id="skills" data-reveal className="grid gap-6 lg:grid-cols-[1fr,0.9fr]">
+          <div>
           <p className="text-xs uppercase tracking-[0.2em] text-magma">Skills</p>
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Hands-on technical strengths.</h2>
           <div className="mt-8 space-y-5 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
@@ -169,14 +213,28 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-studio-900/30 to-transparent p-6">
+            <p className="text-sm uppercase tracking-[0.14em] text-neon">Delivery Focus</p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-300">
+              I prioritize systems that designers can iterate rapidly, QA can validate clearly, and production can ship safely.
+              The stack is selected for maintainability, instrumented performance, and feature velocity.
+            </p>
+            <div className="mt-6 grid gap-3 text-sm text-slate-200">
+              <div className="rounded-lg border border-white/10 bg-black/20 px-4 py-3">Combat and movement tuning pipelines</div>
+              <div className="rounded-lg border border-white/10 bg-black/20 px-4 py-3">Multiplayer state sync and rollback strategy</div>
+              <div className="rounded-lg border border-white/10 bg-black/20 px-4 py-3">Profiling, memory budgets, and frame-time stability</div>
+            </div>
+          </div>
         </section>
 
         <section id="experience" data-reveal>
           <p className="text-xs uppercase tracking-[0.2em] text-magma">Experience</p>
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Studio and indie journey.</h2>
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 space-y-4 border-l border-white/10 pl-5">
             {timeline.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+              <article key={item.title} className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                <span className="absolute -left-[1.82rem] top-8 h-3 w-3 rounded-full border border-white/20 bg-neon/80" />
                 <p className="text-xs uppercase tracking-[0.16em] text-studio-200">{item.period}</p>
                 <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
                 <p className="mt-3 text-sm text-slate-300">{item.detail}</p>
@@ -190,8 +248,12 @@ export default function PortfolioPage() {
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">What collaborators say.</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {testimonials.map((testimonial) => (
-              <figure key={testimonial.person} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                <blockquote className="text-slate-200">"{testimonial.quote}"</blockquote>
+              <figure key={testimonial.person} className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-6">
+                <blockquote className="text-slate-200">
+                  <span className="mr-1 text-magma">&quot;</span>
+                  {testimonial.quote}
+                  <span className="ml-1 text-magma">&quot;</span>
+                </blockquote>
                 <figcaption className="mt-4 text-sm text-slate-400">
                   {testimonial.person} - {testimonial.role}
                 </figcaption>
@@ -201,11 +263,18 @@ export default function PortfolioPage() {
         </section>
 
         <section id="contact" data-reveal className="rounded-3xl border border-white/10 bg-gradient-to-r from-studio-900/60 via-[#0a1222]/60 to-[#1e0d17]/70 p-8 md:p-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-magma">Contact</p>
-          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Let's build your next world-class game.</h2>
-          <p className="mt-4 max-w-2xl text-slate-300">
-            Available for full-time roles, contract gameplay engineering, and technical design collaboration.
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-magma">Contact</p>
+              <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Let&apos;s build your next world-class game.</h2>
+              <p className="mt-4 max-w-2xl text-slate-300">
+                Available for full-time roles, contract gameplay engineering, and technical design collaboration.
+              </p>
+            </div>
+            <span className="rounded-full border border-neon/40 bg-neon/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-neon">
+              Currently Available
+            </span>
+          </div>
           <div className="mt-8 flex flex-wrap gap-4 text-sm">
             <a className="rounded-full bg-neon px-6 py-3 font-semibold text-[#0b1222] transition hover:-translate-y-0.5" href="mailto:hello@gamedevstation.dev">
               hello@gamedevstation.dev
